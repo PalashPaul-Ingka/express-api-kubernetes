@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: node
+  labels:
+    name: node
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      volumes:
+        - name: google-cloud-key
+          secret:
+            secretName: node-kubernetes-key
+      containers:
+      - name: node
+        image: gcr.io/<PROJECT_ID>/node-kubernetes:v0.0.1
+        volumeMounts:
+          - name: google-cloud-key
+            mountPath: /var/secrets/google
+        env:
+        - name: NODE_ENV
+          value: "development"
+        - name: PORT
+          value: "3000"
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/secrets/google/key.json
+      restartPolicy: Always
