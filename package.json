@@ -15,7 +15,7 @@
     "ramda": "^0.27.0",
     "stream": "0.0.2",
     "stream-from-promise": "^1.0.0",
-    "underscore": "^1.10.2",
+    "underscore": "^1.12.1",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
